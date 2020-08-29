@@ -1,0 +1,4 @@
+Count of directories 74
+Count of files 153
+Middle count files in directory 2.0675675675675675
+Middle length name of file 20.143790849673202
