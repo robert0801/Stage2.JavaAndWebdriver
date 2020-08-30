@@ -22,7 +22,7 @@ public class Student {
             throw new ExceptionIncorrectMark("The students " + getName() + " has incorrect mark.");
         else {
             averageMarkStudent = rating.entrySet().stream()
-                    .mapToInt(e -> e.getValue())
+                    .mapToInt(student -> student.getValue())
                     .average()
                     .orElse(0.0);
         }

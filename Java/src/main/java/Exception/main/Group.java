@@ -28,8 +28,8 @@ public class Group {
 
     public double averageMarkOnSubjectInGroup(Subject subject) {
         return studentsInGroup.stream()
-                .filter(e -> e.getRating().containsKey(subject))
-                .mapToInt(e -> e.getRating().get(subject))
+                .filter(student -> student.getRating().containsKey(subject))
+                .mapToInt(student -> student.getRating().get(subject))
                 .average()
                 .orElse(0.0);
     }

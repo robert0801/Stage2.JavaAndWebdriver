@@ -29,7 +29,6 @@ public class DirectoryStructure {
         numberOfSpacesBeforeName--;
     }
 
-
     private void printStructureDirectory(File file) {
         try (FileWriter writer = new FileWriter(PathCreator.pathFile, true)) {
             if (file.isFile()) {

@@ -1,8 +1,5 @@
 package Thread.MainTaskV2.car;
 
-
-import Thread.MainTaskV2.parking.CarsCreator;
-
 import java.util.Random;
 
 public class Car extends Thread {
@@ -11,11 +8,14 @@ public class Car extends Thread {
     private int waitingTime;
     private Random random = new Random();
 
+    public Car(int carID){
+        this.carID = carID;
+    }
+
     @Override
     public void run() {
         this.waitingTime = random.nextInt(10) + 1;
         this.parkingTime = random.nextInt(10) + 1;
-        this.carID = CarsCreator.carID++;
     }
 
     public int getCarID() {

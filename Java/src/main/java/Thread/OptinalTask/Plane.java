@@ -7,10 +7,9 @@ public class Plane extends Thread {
     private Semaphore runway;
     private String namePlane;
 
-    public Plane(Semaphore runway, String namePlane) throws InterruptedException {
+    public Plane(Semaphore runway, String namePlane) {
         this.runway = runway;
         this.namePlane = namePlane;
-        this.join();
     }
 
     public String getNamePlane() {
@@ -22,12 +21,13 @@ public class Plane extends Thread {
         try {
             runway.acquire();
             System.out.println(this.getNamePlane() + " entered the runway.");
-            TimeUnit.SECONDS.sleep(3);
-            System.out.println("The runway \"take\" the " + this.getNamePlane());
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("The runway \"take\" the " + this.getNamePlane() +
+                    " and the plane started to take off.");
+            TimeUnit.SECONDS.sleep(1);
             System.out.println(this.getNamePlane() + " took off.");
-            TimeUnit.SECONDS.sleep(3);
             System.out.println("The runway is free.");
+            TimeUnit.SECONDS.sleep(1);
             runway.release();
         } catch (InterruptedException e) {
             e.printStackTrace();

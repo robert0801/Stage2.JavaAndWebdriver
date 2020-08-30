@@ -10,17 +10,14 @@ public class Optional {
 
     public static void main(String[] args) {
         pathFile = new File("").getAbsolutePath();
-        int placeOfAppearanceInPath = pathFile.indexOf("Java.EPAM");
+        int placeOfAppearanceInPath = pathFile.lastIndexOf("Java");
         pathFile = pathFile.substring(0, placeOfAppearanceInPath);
 
         questions1(30);
-        questions2(pathFile + "Java.EPAM/src/main/java/IO/Optional.java",
-                pathFile + "Java.EPAM/src/main/resources/questions2-changePublicToPrivate.java");
-        questions3(pathFile + "Java.EPAM/src/main/java/IO/Optional.java",
-                pathFile + "Java.EPAM/src/main/resources/questions3-reverse.java");
-
-        int b[][] = new int[5][];
-
+        questions2(pathFile + "Java/src/main/java/IO/Optional.java",
+                pathFile + "Java/src/main/resources/questions2-changePublicToPrivate.java");
+        questions3(pathFile + "Java/src/main/java/IO/Optional.java",
+                pathFile + "Java/src/main/resources/questions3-reverse.java");
     }
 
     /*Создать и заполнить файл случайными целыми числами. Отсортировать содержимое файла по возрастанию.*/
@@ -31,7 +28,7 @@ public class Optional {
             randomArray[i] = random.nextInt();
         }
         Arrays.sort(randomArray);
-        try (FileWriter writer = new FileWriter(pathFile + "Java.EPAM/src/main/resources/questions1.txt")) {
+        try (FileWriter writer = new FileWriter(pathFile + "Java/src/main/resources/questions1.txt")) {
             for (int i = 0; i < randomArray.length; i++) {
                 String s = Integer.toString(randomArray[i]);
                 writer.write(s + "\n");
