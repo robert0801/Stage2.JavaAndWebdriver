@@ -6,14 +6,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
-    @FindBy (xpath = "//textarea[@name='PostForm[text]']")
+public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
+    @FindBy(xpath = "//textarea[@name='PostForm[text]']")
     private WebElement areaForNewPaste;
-    @FindBy (xpath = "//select[@name='PostForm[expiration]']/parent::div")
+    @FindBy(xpath = "//select[@name='PostForm[expiration]']/parent::div")
     private WebElement pasteExpiration;
-    @FindBy (xpath = "//li[text()='10 Minutes']")
+    @FindBy(xpath = "//li[text()='10 Minutes']")
     private WebElement pasteExpiration10Minutes;
-    @FindBy (xpath = "//input[@name='PostForm[name]']")
+    @FindBy(xpath = "//input[@name='PostForm[name]']")
     private WebElement pasteNameForNewPaste;
 
     public CreatNewPasteOnPastebin(WebDriver driver) {
@@ -21,7 +21,7 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
     }
 
     public CreatNewPasteOnPastebin enterCodeOnPastebin() {
-        driver.get(webSite);
+        driver.get(WEB_SITE);
         areaForNewPaste.sendKeys("Hello from WebDriver");
         return this;
     }
@@ -39,9 +39,7 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
                 .until(ExpectedConditions.visibilityOf(pasteNameForNewPaste));
         pasteNameForNewPaste.sendKeys("helloweb");
         return this;
-
     }
-
 }
 
 

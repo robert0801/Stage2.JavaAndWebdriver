@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class GenerateMailPage extends AbstractForCloudGoogle{
+public class GenerateMailPage extends AbstractForCloudGoogle {
     public static Double priceOnGenerateMailPage;
     public static String generateMail;
 
@@ -20,13 +20,13 @@ public class GenerateMailPage extends AbstractForCloudGoogle{
         super(driver);
     }
 
-    public GenerateMailPage getToMailPage(){
+    public GenerateMailPage getToMailPage() {
         driver.get("https://10minutemail.com/");
         return this;
     }
 
-    public GenerateMailPage copyMail(){
-        Boolean checkCopyMail = new WebDriverWait(driver,20)
+    public GenerateMailPage copyMail() {
+        Boolean checkCopyMail = new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.attributeToBeNotEmpty(mailAddress, "value"));
         if (checkCopyMail) {
             generateMail = mailAddress.getAttribute("value");
@@ -37,7 +37,7 @@ public class GenerateMailPage extends AbstractForCloudGoogle{
 
     public GenerateMailPage clickToOpenMail() {
         driver.switchTo().window(PageWithSettings.tab.get(1));
-        WebElement mailPage = new WebDriverWait(driver,20)
+        WebElement mailPage = new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mail_messages_content']")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", mailPage);
         mailPage.click();
@@ -50,7 +50,7 @@ public class GenerateMailPage extends AbstractForCloudGoogle{
         String s = priceCalculatorOnMailPage
                 .getText()
                 .replace("USD ", "")
-                .replaceAll("[^0-9.]","");
+                .replaceAll("[^0-9.]", "");
         priceOnGenerateMailPage = Double.parseDouble(s);
     }
 }

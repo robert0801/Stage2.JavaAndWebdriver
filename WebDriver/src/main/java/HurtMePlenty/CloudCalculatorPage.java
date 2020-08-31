@@ -5,14 +5,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 
 public class CloudCalculatorPage extends AbstractClassPage {
 
@@ -22,7 +18,7 @@ public class CloudCalculatorPage extends AbstractClassPage {
     @FindBy(xpath = "//input[contains(@ng-model,'quantity')]")
     private WebElement numberOfInstances;
 
-    @FindBy (xpath = "//md-option[@value='free']")
+    @FindBy(xpath = "//md-option[@value='free']")
     private WebElement optionFree;
 
     @FindBy(xpath = "//label[text()='Operating System / Software']/../md-select")
@@ -91,7 +87,7 @@ public class CloudCalculatorPage extends AbstractClassPage {
         return this;
     }
 
-    public CloudCalculatorPage checkOperatingSystem(){
+    public CloudCalculatorPage checkOperatingSystem() {
         click(operatingSystem);
         click(optionFree);
         return this;
@@ -103,13 +99,13 @@ public class CloudCalculatorPage extends AbstractClassPage {
         return this;
     }
 
-    public CloudCalculatorPage checkInstanceType(){
+    public CloudCalculatorPage checkInstanceType() {
         click(machineType);
         click(optionMachineType);
         return this;
     }
 
-    public CloudCalculatorPage checkAddGPU(){
+    public CloudCalculatorPage checkAddGPU() {
         click(checkAddGPU);
         click(numberOfGPU);
         click(checkNumberOfGPU);
@@ -118,25 +114,25 @@ public class CloudCalculatorPage extends AbstractClassPage {
         return this;
     }
 
-    public CloudCalculatorPage checkLocalSSD(){
+    public CloudCalculatorPage checkLocalSSD() {
         click(localSSD);
         click(typeLocalSSD);
         return this;
     }
 
-    public CloudCalculatorPage checkCenterLocation(){
+    public CloudCalculatorPage checkCenterLocation() {
         click(location);
         click(typeLocation);
         return this;
     }
 
-    public CloudCalculatorPage checkCommittedUsage(){
+    public CloudCalculatorPage checkCommittedUsage() {
         click(committedUsage);
         click(typeCommittedUsage);
         return this;
     }
 
-    public CloudCalculatorPage addToEstimate(){
+    public CloudCalculatorPage addToEstimate() {
         List<WebElement> addToEstimate = new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//button[@aria-label='Add to Estimate']")));
         addToEstimate.get(0).sendKeys(Keys.ENTER);
@@ -144,12 +140,12 @@ public class CloudCalculatorPage extends AbstractClassPage {
     }
 
 
-    private void waitForVisibility(WebElement element){
+    private void waitForVisibility(WebElement element) {
         new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    private void click(WebElement element){
+    private void click(WebElement element) {
         waitForVisibility(element);
         element.sendKeys(Keys.ENTER);
     }

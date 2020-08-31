@@ -1,21 +1,26 @@
 package test;
 
+import HardCore.CloudGoogleComPage;
+import HardCore.GenerateMailPage;
+import HardCore.PageWithSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import HardCore.*;
-import static java.util.concurrent.TimeUnit.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 
 public class HardCoreTest {
-    private WebDriver driver;
     private final int VALUE_TIMEOUT = 20;
     private final String PATH_CHROME_DRIVER = "src/test/resources/chromedriver.exe";
+    private WebDriver driver;
 
     @BeforeTest(alwaysRun = true)
-    public void openBrowser(){
+    public void openBrowser() {
         System.setProperty("webdriver.chrome.driver", PATH_CHROME_DRIVER);
         PageFactory.initElements(driver, this);
         driver = new ChromeDriver();
@@ -24,7 +29,7 @@ public class HardCoreTest {
     }
 
     @Test
-    public void openPage(){
+    public void openPage() {
         PageWithSettings cloudPage = new CloudGoogleComPage(driver)
                 .getToStartPage()
                 .checkNumberOfInstances()
@@ -53,12 +58,13 @@ public class HardCoreTest {
 
     @Test(dependsOnMethods = "openPage")
     public void checkCost() {
-        Assert.assertEquals(PageWithSettings.priceOnCalculatorPage, GenerateMailPage.priceOnGenerateMailPage, "Price on equals");
+        Assert.assertEquals(PageWithSettings.priceOnCalculatorPage, GenerateMailPage.priceOnGenerateMailPage,
+                "Price in sent email doesn't match price on the page of generate calculator.");
     }
 
     @AfterTest
-    public void closeBrowser(){
-    //driver.quit();
-    driver = null;
+    public void closeBrowser() {
+        driver.quit();
+        driver = null;
     }
 }

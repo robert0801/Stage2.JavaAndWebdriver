@@ -1,6 +1,5 @@
 package HardCore;
 
-import HurtMePlenty.CloudSearchPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CloudGoogleComPage extends AbstractForCloudGoogle{
+public class CloudGoogleComPage extends AbstractForCloudGoogle {
 
     private final String WEB_SITE = "https://cloud.google.com/";
 
@@ -20,7 +19,7 @@ public class CloudGoogleComPage extends AbstractForCloudGoogle{
         super(driver);
     }
 
-    public PageWithSettings getToStartPage(){
+    public PageWithSettings getToStartPage() {
         driver.get(WEB_SITE);
         WebElement searchLine = driver.findElement(By.xpath("//input[@type='text']"));
         searchLine.sendKeys("Google Cloud Platform Pricing Calculator");

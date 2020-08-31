@@ -7,10 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class CloudSearchPage extends AbstractClassPage {
-    @FindBy (xpath = "//a[@data-ctorig='https://cloud.google.com/products/calculator']")
+    @FindBy(xpath = "//a[@data-ctorig='https://cloud.google.com/products/calculator']")
     private List<WebElement> searchResultsCloud;
 
-      public CloudSearchPage(WebDriver driver) {
+    public CloudSearchPage(WebDriver driver) {
         super(driver);
     }
 

@@ -11,16 +11,17 @@ import java.util.concurrent.TimeUnit;
 
 
 public class ICanWinTest {
-    private WebDriver driver;
     private final String PATH_CHROME_DRIVER = "src/test/resources/chromedriver.exe";
+    private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void browserSetup(){
+    public void browserSetup() {
         System.setProperty("webdriver.chrome.driver", PATH_CHROME_DRIVER);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
     @Test
     public void pasteOnPastebin() {
         new CreatNewPasteOnPastebin(driver)
@@ -31,7 +32,7 @@ public class ICanWinTest {
 
 
     @AfterTest(alwaysRun = true)
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
         driver = null;
     }

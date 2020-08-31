@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
+public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
     private String pasteName = "how to gain dominance among developers";
     private String areaName = "git config --global user.name  \"New Sheriff in Town\"\n" +
             "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
@@ -15,22 +15,22 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
     private String syntaxName = "Bash";
 
 
-    @FindBy (xpath = "//textarea[@name='PostForm[text]']")
+    @FindBy(xpath = "//textarea[@name='PostForm[text]']")
     private WebElement areaForNewPaste;
 
-    @FindBy (xpath = "//select[@name='PostForm[expiration]']/parent::div")
+    @FindBy(xpath = "//select[@name='PostForm[expiration]']/parent::div")
     private WebElement pasteExpiration;
 
-    @FindBy (xpath = "//li[text()='10 Minutes']")
+    @FindBy(xpath = "//li[text()='10 Minutes']")
     private WebElement pasteExpiration10Minutes;
 
-    @FindBy (xpath = "//select[@name='PostForm[format]']/parent::div")
+    @FindBy(xpath = "//select[@name='PostForm[format]']/parent::div")
     private WebElement syntaxHighlighting;
 
-    @FindBy (xpath = "//li[text()='Bash']")
+    @FindBy(xpath = "//li[text()='Bash']")
     private WebElement syntaxHighlightingBash;
 
-    @FindBy (xpath = "//input[@name='PostForm[name]']")
+    @FindBy(xpath = "//input[@name='PostForm[name]']")
     private WebElement pasteNameForNewPaste;
 
     @FindBy(xpath = "//button[contains(text(), Create)]")
@@ -39,6 +39,7 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
     public CreatNewPasteOnPastebin(WebDriver driver) {
         super(driver);
     }
+
     public CreatNewPasteOnPastebin enterCodeOnPastebin() {
         driver.get(webSite);
         areaForNewPaste.sendKeys(areaName);
@@ -62,7 +63,7 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin{
         return this;
     }
 
-    private void checkOptionInSelect(WebElement select, WebElement option){
+    private void checkOptionInSelect(WebElement select, WebElement option) {
         select = new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(select));
         select.click();
