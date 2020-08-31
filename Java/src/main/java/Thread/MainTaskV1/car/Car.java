@@ -22,7 +22,6 @@ public class Car extends Thread {
     public void run() {
         parkingTime = random.nextInt(10) + 1;
         waitingTime = random.nextInt(5) + 1;
-        System.out.println(name + " arrived at the parking.");
         if (parkingPlace.availablePermits() == 0) {
             System.out.println(name + " waits free parking place.");
             checkAndWaitParkingPlace(1);
