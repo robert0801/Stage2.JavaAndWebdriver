@@ -1,1 +1,1 @@
-# WebDriver.EPAM
+mvn -Dtestng.dtd.http=true clean test

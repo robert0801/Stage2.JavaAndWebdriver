@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Bring It On" verbose="1">
+    <test name="Bring It On">
+        <classes>
+            <class name="test.BringItOnTest"/>
+        </classes>
+    </test>
+</suite>

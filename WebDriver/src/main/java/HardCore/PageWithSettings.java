@@ -1,6 +1,7 @@
 package HardCore;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -133,8 +134,10 @@ public class PageWithSettings extends AbstractForCloudGoogle {
     public PageWithSettings checkInputMail(){
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        if (!buttonInputMail.isDisplayed()){
+            new Actions(driver).moveByOffset(100, 100).click().build().perform();
+            click(buttonEmailEstimate);
+        }
         waitForVisibility(buttonInputMail);
         buttonInputMail.sendKeys(GenerateMailPage.generateMail);
         return this;

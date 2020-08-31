@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Hurt Me Plenty" verbose="1">
+    <test name="Hurt Me Plenty">
+        <classes>
+            <class name="test.HurtMePlentyTest"/>
+        </classes>
+    </test>
+</suite>
