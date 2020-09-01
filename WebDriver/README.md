@@ -1,1 +1,1 @@
-mvn -Dtestng.dtd.http=true clean test
+mvn -Dsurefire.suiteXmlFiles=src\test\resources\hardcore.xml clean test
