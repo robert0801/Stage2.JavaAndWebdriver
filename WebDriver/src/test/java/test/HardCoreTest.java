@@ -11,11 +11,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 
 public class HardCoreTest {
-    private final int VALUE_TIMEOUT = 20;
     private final String PATH_CHROME_DRIVER = "src/test/resources/chromedriver.exe";
     private WebDriver driver;
 
@@ -24,7 +21,6 @@ public class HardCoreTest {
         System.setProperty("webdriver.chrome.driver", PATH_CHROME_DRIVER);
         PageFactory.initElements(driver, this);
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(VALUE_TIMEOUT, SECONDS);
         driver.manage().window().maximize();
     }
 
@@ -41,15 +37,15 @@ public class HardCoreTest {
                 .checkDatacenterLocation()
                 .checkCommittedUsage()
                 .addToEstimate()
-                .emailEstimate()
                 .createNewTab();
 
         GenerateMailPage mailPage = new GenerateMailPage(driver)
                 .getToMailPage()
                 .copyMail();
         cloudPage
+                .emailEstimate()
                 .checkInputMail()
-                .checkSendEmail()
+                .clickOnTheButtonSendEmail()
                 .getPriceInCalculator();
         mailPage
                 .clickToOpenMail()

@@ -138,16 +138,5 @@ public class CloudCalculatorPage extends AbstractClassPage {
         addToEstimate.get(0).sendKeys(Keys.ENTER);
         return this;
     }
-
-
-    private void waitForVisibility(WebElement element) {
-        new WebDriverWait(driver, 20)
-                .until(ExpectedConditions.visibilityOf(element));
-    }
-
-    private void click(WebElement element) {
-        waitForVisibility(element);
-        element.sendKeys(Keys.ENTER);
-    }
 }
 

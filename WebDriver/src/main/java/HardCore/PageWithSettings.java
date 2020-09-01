@@ -1,6 +1,9 @@
 package HardCore;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -119,11 +122,6 @@ public class PageWithSettings extends AbstractForCloudGoogle {
         return this;
     }
 
-    public PageWithSettings emailEstimate() {
-        click(buttonEmailEstimate);
-        return this;
-    }
-
     public PageWithSettings createNewTab() {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         tab = new ArrayList<>(driver.getWindowHandles());
@@ -131,19 +129,20 @@ public class PageWithSettings extends AbstractForCloudGoogle {
         return this;
     }
 
-    public PageWithSettings checkInputMail(){
+    public PageWithSettings emailEstimate() {
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
-        if (!buttonInputMail.isDisplayed()){
-            new Actions(driver).moveByOffset(100, 100).click().build().perform();
-            click(buttonEmailEstimate);
-        }
+        click(buttonEmailEstimate);
+        return this;
+    }
+
+    public PageWithSettings checkInputMail() {
         waitForVisibility(buttonInputMail);
         buttonInputMail.sendKeys(GenerateMailPage.generateMail);
         return this;
     }
 
-    public PageWithSettings checkSendEmail() {
+    public PageWithSettings clickOnTheButtonSendEmail() {
         click(buttonSendEmail);
         return this;
     }
@@ -159,17 +158,5 @@ public class PageWithSettings extends AbstractForCloudGoogle {
                 .replace("1 month", "")
                 .replaceAll("[^0-9.]", "");
         priceOnCalculatorPage = Double.parseDouble(s);
-    }
-
-
-    private WebElement waitForVisibility(WebElement element) {
-        new WebDriverWait(driver, 20)
-                .until(ExpectedConditions.visibilityOf(element));
-        return element;
-    }
-
-    private void click(WebElement element) {
-        waitForVisibility(element);
-        element.sendKeys(Keys.ENTER);
     }
 }

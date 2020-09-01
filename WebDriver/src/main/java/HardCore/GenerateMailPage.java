@@ -13,15 +13,21 @@ public class GenerateMailPage extends AbstractForCloudGoogle {
     public static Double priceOnGenerateMailPage;
     public static String generateMail;
 
-    @FindBy(xpath = "//input[@id='mail_address']")
+    @FindBy(xpath = "//input[@id='mail']")
     private WebElement mailAddress;
+    @FindBy(xpath = "//h3[contains(text(), 'USD')]")
+    private WebElement priceCalculatorOnMailPage;
+    @FindBy(xpath = "//*[@id='inbox_count_number']")
+    private WebElement countOfSentMail;
+    @FindBy(xpath = "//a[@class='viewLink title-subject'][text()]")
+    private WebElement mailPage;
 
     public GenerateMailPage(WebDriver driver) {
         super(driver);
     }
 
     public GenerateMailPage getToMailPage() {
-        driver.get("https://10minutemail.com/");
+        driver.get("https://10minemail.com/ru/");
         return this;
     }
 
@@ -37,16 +43,14 @@ public class GenerateMailPage extends AbstractForCloudGoogle {
 
     public GenerateMailPage clickToOpenMail() {
         driver.switchTo().window(PageWithSettings.tab.get(1));
-        WebElement mailPage = new WebDriverWait(driver, 20)
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mail_messages_content']")));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", mailPage);
+        waitForVisibility(mailPage);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();" ,mailPage);
         mailPage.click();
         return this;
     }
 
     public void getPriceOnGenerateMailPage() {
-        WebElement priceCalculatorOnMailPage = new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(), 'USD')]")));
+        waitForVisibility(priceCalculatorOnMailPage);
         String s = priceCalculatorOnMailPage
                 .getText()
                 .replace("USD ", "")

@@ -12,17 +12,23 @@ public class CloudHomePage extends AbstractClassPage {
 
     @FindBy(xpath = "//input[@name='q']")
     private WebElement searchLineCloud;
+    @FindBy(xpath = "//a[@data-ctorig='https://cloud.google.com/products/calculator']")
+    private WebElement searchResultsCloud;
 
     public CloudHomePage(WebDriver driver) {
         super(driver);
     }
 
-    public CloudSearchPage cloudStartPage() {
+    public CloudHomePage cloudStartPage() {
         driver.get(WEB_SITE);
+        waitForVisibility(searchLineCloud);
         searchLineCloud.sendKeys("Google Cloud Platform Pricing Calculator");
         searchLineCloud.sendKeys(Keys.ENTER);
-        return new CloudSearchPage(driver);
+        return this;
     }
 
-
+    public CloudCalculatorPage cloudSearchPage() {
+        click(searchResultsCloud);
+        return new CloudCalculatorPage(driver);
+    }
 }
