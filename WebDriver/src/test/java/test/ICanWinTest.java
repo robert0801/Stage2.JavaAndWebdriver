@@ -7,8 +7,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 
 public class ICanWinTest {
     private final String PATH_CHROME_DRIVER = "src/test/resources/chromedriver.exe";
@@ -19,7 +17,6 @@ public class ICanWinTest {
         System.setProperty("webdriver.chrome.driver", PATH_CHROME_DRIVER);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @Test
@@ -29,7 +26,6 @@ public class ICanWinTest {
                 .checkThe10Minutes()
                 .insertPasteName();
     }
-
 
     @AfterTest(alwaysRun = true)
     public void closeBrowser() {

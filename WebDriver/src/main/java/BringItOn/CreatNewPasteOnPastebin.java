@@ -7,32 +7,31 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
+    @FindBy(xpath = "//h1")
+    public static WebElement titleOnPageWithInformationSettingFields;
+    @FindBy(xpath = "//a[text()='Bash']")
+    public static WebElement syntaxHighlightingOnPageWithInformationSettingFields;
+    @FindBy(xpath = "//ol")
+    public static WebElement codeOnPageWithInformationSettingFields;
     private String pasteName = "how to gain dominance among developers";
+    //public static WebElement titleOnPageWithInformationSettingFields;
     private String areaName = "git config --global user.name  \"New Sheriff in Town\"\n" +
             "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
             "git push origin master --force";
     private String selectPaste = "10 Minutes";
     private String syntaxName = "Bash";
-
-
     @FindBy(xpath = "//textarea[@name='PostForm[text]']")
     private WebElement areaForNewPaste;
-
     @FindBy(xpath = "//select[@name='PostForm[expiration]']/parent::div")
     private WebElement pasteExpiration;
-
     @FindBy(xpath = "//li[text()='10 Minutes']")
     private WebElement pasteExpiration10Minutes;
-
     @FindBy(xpath = "//select[@name='PostForm[format]']/parent::div")
     private WebElement syntaxHighlighting;
-
     @FindBy(xpath = "//li[text()='Bash']")
     private WebElement syntaxHighlightingBash;
-
     @FindBy(xpath = "//input[@name='PostForm[name]']")
     private WebElement pasteNameForNewPaste;
-
     @FindBy(xpath = "//button[contains(text(), Create)]")
     private WebElement createNewPasteBtn;
 
@@ -51,7 +50,6 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
         return this;
     }
 
-
     public CreatNewPasteOnPastebin checkThe10Minutes() {
         checkOptionInSelect(pasteExpiration, pasteExpiration10Minutes);
         return this;
@@ -60,6 +58,13 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
     public CreatNewPasteOnPastebin insertPasteNameAndCreatPaste() {
         pasteNameForNewPaste.sendKeys(pasteName);
         createNewPasteBtn.click();
+        return this;
+    }
+
+    public CreatNewPasteOnPastebin getInformationWithSettingFields() {
+        waitForVisibilatyOfSomeWebElement(titleOnPageWithInformationSettingFields);
+        waitForVisibilatyOfSomeWebElement(syntaxHighlightingOnPageWithInformationSettingFields);
+        waitForVisibilatyOfSomeWebElement(codeOnPageWithInformationSettingFields);
         return this;
     }
 
@@ -72,4 +77,12 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
         option.click();
     }
 
+    private void waitForVisibilatyOfSomeWebElement(WebElement element) {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public WebElement getTitleOnPageWithInformationSettingFields() {
+        return titleOnPageWithInformationSettingFields;
+    }
 }

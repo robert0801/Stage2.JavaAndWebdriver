@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class CloudCalculatorPage extends AbstractClassPage {
+public class PageWithSettingsCalculator extends AbstractForCloudCalculatorGoogle {
 
     @FindBy(xpath = "//md-tab-item/div[@title='Compute Engine']")
     private WebElement iconComputeEngine;
@@ -69,11 +69,11 @@ public class CloudCalculatorPage extends AbstractClassPage {
     @FindBy(xpath = "//md-select-menu[contains(@style, 'transform-origin')]//div[text()='1 Year']/parent::md-option")
     private WebElement typeCommittedUsage;
 
-    public CloudCalculatorPage(WebDriver driver) {
+    public PageWithSettingsCalculator(WebDriver driver) {
         super(driver);
     }
 
-    public CloudCalculatorPage activateComputeEngine() {
+    public PageWithSettingsCalculator activateComputeEngine() {
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
         waitForVisibility(iconComputeEngine);
@@ -81,31 +81,31 @@ public class CloudCalculatorPage extends AbstractClassPage {
         return this;
     }
 
-    public CloudCalculatorPage checkNumberOfInstances() {
+    public PageWithSettingsCalculator settingValueNumberOfInstances() {
         waitForVisibility(numberOfInstances);
         numberOfInstances.sendKeys("4");
         return this;
     }
 
-    public CloudCalculatorPage checkOperatingSystem() {
+    public PageWithSettingsCalculator settingValueOperatingSystem() {
         click(operatingSystem);
         click(optionFree);
         return this;
     }
 
-    public CloudCalculatorPage checkMachineClass() {
+    public PageWithSettingsCalculator settingValueMachineClass() {
         click(machineClass);
         click(optionRegular);
         return this;
     }
 
-    public CloudCalculatorPage checkInstanceType() {
+    public PageWithSettingsCalculator settingValueInstanceType() {
         click(machineType);
         click(optionMachineType);
         return this;
     }
 
-    public CloudCalculatorPage checkAddGPU() {
+    public PageWithSettingsCalculator settingAddGPU() {
         click(checkAddGPU);
         click(numberOfGPU);
         click(checkNumberOfGPU);
@@ -114,25 +114,25 @@ public class CloudCalculatorPage extends AbstractClassPage {
         return this;
     }
 
-    public CloudCalculatorPage checkLocalSSD() {
+    public PageWithSettingsCalculator settingValueLocalSSD() {
         click(localSSD);
         click(typeLocalSSD);
         return this;
     }
 
-    public CloudCalculatorPage checkCenterLocation() {
+    public PageWithSettingsCalculator settingValueCenterLocation() {
         click(location);
         click(typeLocation);
         return this;
     }
 
-    public CloudCalculatorPage checkCommittedUsage() {
+    public PageWithSettingsCalculator settingValueCommittedUsage() {
         click(committedUsage);
         click(typeCommittedUsage);
         return this;
     }
 
-    public CloudCalculatorPage addToEstimate() {
+    public PageWithSettingsCalculator clickOnTheButtonAddToEstimate() {
         List<WebElement> addToEstimate = new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//button[@aria-label='Add to Estimate']")));
         addToEstimate.get(0).sendKeys(Keys.ENTER);

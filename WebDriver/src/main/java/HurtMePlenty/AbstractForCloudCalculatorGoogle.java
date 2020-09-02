@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-abstract public class AbstractClassPage {
+abstract public class AbstractForCloudCalculatorGoogle {
     protected WebDriver driver;
 
-    public AbstractClassPage(WebDriver driver) {
+    public AbstractForCloudCalculatorGoogle(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

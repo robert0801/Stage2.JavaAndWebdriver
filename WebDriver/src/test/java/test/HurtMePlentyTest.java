@@ -1,7 +1,7 @@
 package test;
 
-import HurtMePlenty.CloudCalculatorPage;
-import HurtMePlenty.CloudHomePage;
+import HurtMePlenty.PageWithSettingsCalculator;
+import HurtMePlenty.StartPageForSearchingCalculator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 
 public class HurtMePlentyTest {
@@ -28,19 +26,19 @@ public class HurtMePlentyTest {
 
     @Test(description = "Create new calculator")
     public void openPage() {
-        CloudCalculatorPage cloudGoogle = new CloudHomePage(driver)
-                .cloudStartPage()
-                .cloudSearchPage()
+        PageWithSettingsCalculator cloudGoogle = new StartPageForSearchingCalculator(driver)
+                .getToStartPageWithSearchingLine()
+                .choiceTheLinkWithCloudCalculatorPage()
                 .activateComputeEngine()
-                .checkNumberOfInstances()
-                .checkOperatingSystem()
-                .checkMachineClass()
-                .checkInstanceType()
-                .checkAddGPU()
-                .checkLocalSSD()
-                .checkCenterLocation()
-                .checkCommittedUsage()
-                .addToEstimate();
+                .settingValueNumberOfInstances()
+                .settingValueOperatingSystem()
+                .settingValueMachineClass()
+                .settingValueInstanceType()
+                .settingAddGPU()
+                .settingValueLocalSSD()
+                .settingValueCenterLocation()
+                .settingValueCommittedUsage()
+                .clickOnTheButtonAddToEstimate();
     }
 
     @Test(dependsOnMethods = "openPage")

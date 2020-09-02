@@ -1,6 +1,5 @@
 package HardCore;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class GenerateMailPage extends AbstractForCloudGoogle {
+public class GenerateMailPage extends AbstractForCloudCalculatorGoogle {
     public static Double priceOnGenerateMailPage;
     public static String generateMail;
 
@@ -26,7 +25,7 @@ public class GenerateMailPage extends AbstractForCloudGoogle {
         super(driver);
     }
 
-    public GenerateMailPage getToMailPage() {
+    public GenerateMailPage getToGenerateMailPage() {
         driver.get("https://10minemail.com/ru/");
         return this;
     }
@@ -37,14 +36,14 @@ public class GenerateMailPage extends AbstractForCloudGoogle {
         if (checkCopyMail) {
             generateMail = mailAddress.getAttribute("value");
         }
-        driver.switchTo().window(PageWithSettings.tab.get(0));
+        driver.switchTo().window(PageWithSettingsOfCalculator.tab.get(0));
         return this;
     }
 
     public GenerateMailPage clickToOpenMail() {
-        driver.switchTo().window(PageWithSettings.tab.get(1));
+        driver.switchTo().window(PageWithSettingsOfCalculator.tab.get(1));
         waitForVisibility(mailPage);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();" ,mailPage);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", mailPage);
         mailPage.click();
         return this;
     }

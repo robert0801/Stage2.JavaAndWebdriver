@@ -7,17 +7,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-abstract public class AbstractForCloudGoogle {
+abstract public class AbstractForCloudCalculatorGoogle {
 
     protected WebDriver driver;
 
-    public AbstractForCloudGoogle(WebDriver driver) {
+    public AbstractForCloudCalculatorGoogle(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     protected WebElement waitForVisibility(WebElement element) {
-        new WebDriverWait(driver, 20)
+        new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.visibilityOf(element));
         return element;
     }

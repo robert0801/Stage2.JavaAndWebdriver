@@ -1,8 +1,8 @@
 package test;
 
-import HardCore.CloudGoogleComPage;
 import HardCore.GenerateMailPage;
-import HardCore.PageWithSettings;
+import HardCore.PageWithSettingsOfCalculator;
+import HardCore.StartPageForSearchingCalculator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -26,27 +26,28 @@ public class HardCoreTest {
 
     @Test
     public void openPage() {
-        PageWithSettings cloudPage = new CloudGoogleComPage(driver)
+        PageWithSettingsOfCalculator cloudPage = new StartPageForSearchingCalculator(driver)
                 .getToStartPage()
-                .checkNumberOfInstances()
-                .checkOperatingSystem()
-                .checkMachineClass()
-                .checkMachineType()
-                .checkAddGPU()
-                .checkLocalSSD()
-                .checkDatacenterLocation()
-                .checkCommittedUsage()
-                .addToEstimate()
+                .activateComputeEngine()
+                .settingValueNumberOfInstances()
+                .settingValueOperatingSystem()
+                .settingValueMachineClass()
+                .settingValueMachineType()
+                .settingAddGPU()
+                .settingValueLocalSSD()
+                .settingValueDatacenterLocation()
+                .settingValueCommittedUsage()
+                .clickOnTheButtonAddToEstimate()
                 .createNewTab();
 
         GenerateMailPage mailPage = new GenerateMailPage(driver)
-                .getToMailPage()
+                .getToGenerateMailPage()
                 .copyMail();
         cloudPage
-                .emailEstimate()
-                .checkInputMail()
+                .clickOnButtonEmailEstimate()
+                .insertGeneratingMailInFieldInputMail()
                 .clickOnTheButtonSendEmail()
-                .getPriceInCalculator();
+                .getPriceInCalculatorPage();
         mailPage
                 .clickToOpenMail()
                 .getPriceOnGenerateMailPage();
@@ -54,8 +55,8 @@ public class HardCoreTest {
 
     @Test(dependsOnMethods = "openPage")
     public void checkCost() {
-        Assert.assertEquals(PageWithSettings.priceOnCalculatorPage, GenerateMailPage.priceOnGenerateMailPage,
-                "Price in sent email doesn't match price on the page of generate calculator.");
+        Assert.assertEquals(PageWithSettingsOfCalculator.priceOnCalculatorPage, GenerateMailPage.priceOnGenerateMailPage,
+                "The price in the sent email does not match the price on the calculator creation page.");
     }
 
     @AfterTest

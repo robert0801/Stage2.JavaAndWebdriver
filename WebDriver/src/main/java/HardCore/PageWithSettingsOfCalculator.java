@@ -4,17 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 
-public class PageWithSettings extends AbstractForCloudGoogle {
+public class PageWithSettingsOfCalculator extends AbstractForCloudCalculatorGoogle {
 
     public static Double priceOnCalculatorPage;
     static ArrayList<String> tab;
+    @FindBy(xpath = "//md-tab-item/div[@title='Compute Engine']")
+    private WebElement iconComputeEngine;
     @FindBy(xpath = "//input[contains(@ng-model,'quantity')]")
     private WebElement numberOfInstances;
     @FindBy(xpath = "//label[text()='Operating System / Software']/../md-select")
@@ -60,37 +61,43 @@ public class PageWithSettings extends AbstractForCloudGoogle {
     @FindBy(xpath = "//button[@aria-label='Send Email']")
     private WebElement buttonSendEmail;
 
-    public PageWithSettings(WebDriver driver) {
+    public PageWithSettingsOfCalculator(WebDriver driver) {
         super(driver);
     }
 
-    public PageWithSettings checkNumberOfInstances() {
+    public PageWithSettingsOfCalculator activateComputeEngine() {
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
+        waitForVisibility(iconComputeEngine);
+        iconComputeEngine.click();
+        return this;
+    }
+
+    public PageWithSettingsOfCalculator settingValueNumberOfInstances() {
         waitForVisibility(numberOfInstances);
         numberOfInstances.sendKeys("4");
         return this;
     }
 
-    public PageWithSettings checkOperatingSystem() {
+    public PageWithSettingsOfCalculator settingValueOperatingSystem() {
         click(listOperatingSystem);
         click(freeOperatingSystem);
         return this;
     }
 
-    public PageWithSettings checkMachineClass() {
+    public PageWithSettingsOfCalculator settingValueMachineClass() {
         click(listMachineClass);
         click(regularMachineClass);
         return this;
     }
 
-    public PageWithSettings checkMachineType() {
+    public PageWithSettingsOfCalculator settingValueMachineType() {
         click(listMachineType);
         click(n1Standard8MachineType);
         return this;
     }
 
-    public PageWithSettings checkAddGPU() {
+    public PageWithSettingsOfCalculator settingAddGPU() {
         click(addGPU);
         click(listNumberOfGPU);
         click(checkNumberOfGPU);
@@ -99,55 +106,55 @@ public class PageWithSettings extends AbstractForCloudGoogle {
         return this;
     }
 
-    public PageWithSettings checkLocalSSD() {
+    public PageWithSettingsOfCalculator settingValueLocalSSD() {
         click(listLocalSSD);
         click(localSSD);
         return this;
     }
 
-    public PageWithSettings checkDatacenterLocation() {
+    public PageWithSettingsOfCalculator settingValueDatacenterLocation() {
         click(listDatacenterLocation);
         click(frankfurtDatacenterLocation);
         return this;
     }
 
-    public PageWithSettings checkCommittedUsage() {
+    public PageWithSettingsOfCalculator settingValueCommittedUsage() {
         click(listCommittedUsage);
         click(yearCommittedUsage);
         return this;
     }
 
-    public PageWithSettings addToEstimate() {
+    public PageWithSettingsOfCalculator clickOnTheButtonAddToEstimate() {
         click(buttonAddToEstimate);
         return this;
     }
 
-    public PageWithSettings createNewTab() {
+    public PageWithSettingsOfCalculator createNewTab() {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         tab = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tab.get(1));
         return this;
     }
 
-    public PageWithSettings emailEstimate() {
+    public PageWithSettingsOfCalculator clickOnButtonEmailEstimate() {
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
         click(buttonEmailEstimate);
         return this;
     }
 
-    public PageWithSettings checkInputMail() {
+    public PageWithSettingsOfCalculator insertGeneratingMailInFieldInputMail() {
         waitForVisibility(buttonInputMail);
         buttonInputMail.sendKeys(GenerateMailPage.generateMail);
         return this;
     }
 
-    public PageWithSettings clickOnTheButtonSendEmail() {
+    public PageWithSettingsOfCalculator clickOnTheButtonSendEmail() {
         click(buttonSendEmail);
         return this;
     }
 
-    public void getPriceInCalculator() {
+    public void getPriceInCalculatorPage() {
         driver.switchTo().window(tab.get(0));
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
