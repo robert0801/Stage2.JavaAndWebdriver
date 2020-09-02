@@ -18,7 +18,7 @@ public class StartPageForSearchingCalculator extends AbstractForCloudCalculatorG
         super(driver);
     }
 
-    public PageWithSettingsOfCalculator getToStartPage() {
+    public PageWithSettingsOfCalculator getToStartPageWithSearchingLine() {
         driver.get(WEB_SITE);
         waitForVisibility(searchLine).sendKeys("Google Cloud Platform Pricing Calculator");
         searchLine.sendKeys(Keys.ENTER);

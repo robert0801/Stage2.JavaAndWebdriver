@@ -27,7 +27,7 @@ public class HardCoreTest {
     @Test
     public void openPage() {
         PageWithSettingsOfCalculator cloudPage = new StartPageForSearchingCalculator(driver)
-                .getToStartPage()
+                .getToStartPageWithSearchingLine()
                 .activateComputeEngine()
                 .settingValueNumberOfInstances()
                 .settingValueOperatingSystem()

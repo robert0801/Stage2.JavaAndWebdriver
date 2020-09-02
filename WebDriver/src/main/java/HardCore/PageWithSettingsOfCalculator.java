@@ -60,6 +60,8 @@ public class PageWithSettingsOfCalculator extends AbstractForCloudCalculatorGoog
     private WebElement buttonInputMail;
     @FindBy(xpath = "//button[@aria-label='Send Email']")
     private WebElement buttonSendEmail;
+    @FindBy(xpath = "//md-card-content[@id='resultBlock']//div/b[contains(text(),Total)]")
+    private WebElement valuePriceInCardOnCalculatorPage;
 
     public PageWithSettingsOfCalculator(WebDriver driver) {
         super(driver);
@@ -158,9 +160,8 @@ public class PageWithSettingsOfCalculator extends AbstractForCloudCalculatorGoog
         driver.switchTo().window(tab.get(0));
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
-        WebElement priceCalculator = new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-card-content[@id='resultBlock']//div/b[contains(text(),Total)]")));
-        String s = priceCalculator
+        waitForVisibility(valuePriceInCardOnCalculatorPage);
+        String s = valuePriceInCardOnCalculatorPage
                 .getText()
                 .replace("1 month", "")
                 .replaceAll("[^0-9.]", "");
