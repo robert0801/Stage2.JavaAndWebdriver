@@ -14,7 +14,6 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
     @FindBy(xpath = "//ol")
     public static WebElement codeOnPageWithInformationSettingFields;
     private String pasteName = "how to gain dominance among developers";
-    //public static WebElement titleOnPageWithInformationSettingFields;
     private String areaName = "git config --global user.name  \"New Sheriff in Town\"\n" +
             "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
             "git push origin master --force";
@@ -80,9 +79,5 @@ public class CreatNewPasteOnPastebin extends AbstractClassForPastebin {
     private void waitForVisibilatyOfSomeWebElement(WebElement element) {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public WebElement getTitleOnPageWithInformationSettingFields() {
-        return titleOnPageWithInformationSettingFields;
     }
 }
