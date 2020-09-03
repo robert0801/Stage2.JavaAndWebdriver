@@ -43,9 +43,6 @@ public class GenerateMailPage extends AbstractForCloudCalculatorGoogle {
     public GenerateMailPage clickToOpenMail() {
         driver.switchTo().window(PageWithSettingsOfCalculator.tab.get(1));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", fieldWithSentMail);
-        WebElement mailPage = new WebDriverWait(driver, 20)
-                .until(ExpectedConditions.visibilityOfElementLocated
-                        (By.xpath("//a[@class='viewLink title-subject'][text()]")));
         waitForVisibility(mailPage);
         mailPage.click();
         return this;
