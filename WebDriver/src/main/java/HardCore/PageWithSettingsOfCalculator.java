@@ -68,8 +68,7 @@ public class PageWithSettingsOfCalculator extends AbstractForCloudCalculatorGoog
     }
 
     public PageWithSettingsOfCalculator activateComputeEngine() {
-        driver.switchTo().frame(0);
-        driver.switchTo().frame("myFrame");
+        getToTheFrame();
         waitForVisibility(iconComputeEngine);
         iconComputeEngine.click();
         return this;
@@ -139,8 +138,7 @@ public class PageWithSettingsOfCalculator extends AbstractForCloudCalculatorGoog
     }
 
     public PageWithSettingsOfCalculator clickOnButtonEmailEstimate() {
-        driver.switchTo().frame(0);
-        driver.switchTo().frame("myFrame");
+        getToTheFrame();
         click(buttonEmailEstimate);
         return this;
     }
@@ -158,8 +156,7 @@ public class PageWithSettingsOfCalculator extends AbstractForCloudCalculatorGoog
 
     public void getPriceInCalculatorPage() {
         driver.switchTo().window(tab.get(0));
-        driver.switchTo().frame(0);
-        driver.switchTo().frame("myFrame");
+        getToTheFrame();
         waitForVisibility(valuePriceInCardOnCalculatorPage);
         String s = valuePriceInCardOnCalculatorPage
                 .getText()

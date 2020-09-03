@@ -27,4 +27,9 @@ abstract public class AbstractForCloudCalculatorGoogle {
         element.sendKeys(Keys.ENTER);
     }
 
+    protected void getToTheFrame(){
+        driver.switchTo().frame(0);
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("myFrame"));
+    }
 }
