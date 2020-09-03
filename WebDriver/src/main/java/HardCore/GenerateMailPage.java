@@ -1,8 +1,6 @@
 package HardCore;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +18,8 @@ public class GenerateMailPage extends AbstractForCloudCalculatorGoogle {
     private WebElement countOfSentMail;
     @FindBy(xpath = "//a[@class='viewLink title-subject'][text()]")
     private WebElement mailPage;
+    @FindBy(xpath = "//div[@class='inbox-area maillist']")
+    private WebElement fieldWithSentMail;
 
     public GenerateMailPage(WebDriver driver) {
         super(driver);
@@ -42,8 +42,11 @@ public class GenerateMailPage extends AbstractForCloudCalculatorGoogle {
 
     public GenerateMailPage clickToOpenMail() {
         driver.switchTo().window(PageWithSettingsOfCalculator.tab.get(1));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", fieldWithSentMail);
+        WebElement mailPage = new WebDriverWait(driver, 20)
+                .until(ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//a[@class='viewLink title-subject'][text()]")));
         waitForVisibility(mailPage);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", mailPage);
         mailPage.click();
         return this;
     }

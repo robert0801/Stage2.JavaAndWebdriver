@@ -17,7 +17,7 @@ abstract public class AbstractForCloudCalculatorGoogle {
     }
 
     protected WebElement waitForVisibility(WebElement element) {
-        new WebDriverWait(driver, 30)
+        new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.visibilityOf(element));
         return element;
     }
